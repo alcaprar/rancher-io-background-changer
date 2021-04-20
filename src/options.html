@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Rancher background changer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.css">
+  <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+</head>
+<body>
+    <h1>Rancher options</h1>
+    <div id="app">
+      <button v-on:click="saveChanges">Save changes</button>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tags</th>
+            <th scope="col">Base url</th>
+            <th scope="col">Matching string</th>
+            <th scope="col">Background color</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in items">
+            <th scope="row">{{index}}</th>
+            <td><input type="text" v-model="item.description" placeholder="Description"></td>
+            <td><input type="text" v-model="item.baseUrl" placeholder="rancher.example.io"></td>
+            <td><input type="text" v-model="item.string" placeholder="c-XXXX, n-YYYY..."></td>
+            <td><input type="text" v-model="item.backgroundColor" placeholder="#fff"></td>
+            <td>
+              <button v-on:click="deleteRow($event, index)">Delete row</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button v-on:click="addRow">Add row</button>
+    </div>
+
+    <script src="./options.js"></script>
+</body>
+</html>
